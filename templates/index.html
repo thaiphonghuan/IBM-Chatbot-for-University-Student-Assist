@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uni Student Bot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            position: relative;
+            /* Đặt ảnh background */
+            background-image: url('static/ec2bb5fed0eac5753504e8bbf510df9f.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        /* Xoay ảnh 90 độ */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('static/c4b30d00b5716d5f0edbeea9e114f10b.jpg');
+            background-size: cover;
+            background-position: center;
+            transform: rotate(90deg); /* Xoay ảnh từ dọc sang ngang */
+            z-index: -1; /* Đưa ảnh ra sau các nội dung khác */
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            background-color: #ff7043;
+            margin: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            margin: 15px 0;
+        }
+
+        /* Orange background div */
+        .orange-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background-color: #ff7043;
+            z-index: -1;
+        }
+
+        /* Flex container for forms */
+        .form-container {
+            display: flex;
+            justify-content: flex-start; /* Align items to the start (left) */
+            margin: 30px; /* Add margin around the form container */
+            gap: 20px; /* Space between forms */
+            margin-top: 50px; /* Add margin to push forms down */
+        }
+
+        /* Styling for forms */
+        form {
+            background-color: #fff;
+            padding: 20px;
+            width: 100%; /* Full width of the container */
+            max-width: 400px; /* Limit the width */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        form h3 {
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #ff7043;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff7043;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff5722;
+        }
+
+        /* Styling for the table */
+        .student-table {
+            position: fixed;
+            bottom: 110px;
+            left: 10px;
+            width: 50%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #ff7043;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Styling for chatbot on the right */
+        .chatbot {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 25%;
+        }
+
+        /* Styling for the GIF */
+        .gif {
+            position: fixed;
+            bottom: 85px;
+            left: 68%;
+            width: 25%;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .student-table {
+                width: 80%;
+                bottom: 150px;
+                left: 10%;
+            }
+
+            .chatbot, .gif {
+                width: 50%;
+            }
+
+            .form-container {
+                flex-direction: column; /* Stack forms vertically on smaller screens */
+                align-items: flex-start; /* Align forms to the start (left) */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .student-table {
+                width: 90%;
+                left: 5%;
+            }
+
+            .chatbot, .gif {
+                width: 90%;
+                left: 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Orange background div -->
+    <div class="orange-background"></div>
+
+    <h1>Welcome to Uni Student Bot</h1>
+    <p>We're here to assist you with any questions you may have about student support!</p>
+
+    <!-- Flex container for forms -->
+    <div class="form-container">
+        <!-- Form to add a student -->
+        <form method="POST">
+            <h3>Add Student</h3>
+            <input type="text" name="name" placeholder="Tên sinh viên" required>
+            <input type="date" name="birth_date" placeholder="Ngày sinh" required>
+            <input type="text" name="student_id" placeholder="Mã số" required>
+            <input type="text" name="major" placeholder="Chuyên ngành" required>
+            <button type="submit" name="add">Thêm sinh viên</button>
+        </form>
+
+        <!-- Form to delete a student -->
+        <form method="POST" class="delete-form">
+            <h3>Delete Student</h3>
+            <input type="text" name="student_id" placeholder="Mã số" required>
+            <button type="submit" name="delete">Xóa sinh viên</button>
+        </form>
+    </div>
+
+    <!-- Table for displaying students -->
+    <div class="student-table">
+        <h3>Student List</h3>
+        <table border="1">
+            <tr>
+                {% for col in students.columns %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in students.iterrows() %}
+            <tr>
+                {% for col in students.columns %}
+                <td>{{ row[1][col] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- Image for GIF -->
+    <div class="gif">
+        <img src="{{ url_for('static', filename='4bcb1fb72d1d08efa44efa5ceb712ec7.gif') }}" alt="Chatbot GIF" style="width: 100%; max-width: 200px;">
+    </div>
+
+    <!-- Kommunicate chatbot integration -->
+    <div class="chatbot">
+        <script type="text/javascript">
+            (function(d, m){
+                var kommunicateSettings = {"appId":"copy your appID here","popupWidget":true,"automaticChatOpenOnNavigation":true};
+                var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+                s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+                var h = document.getElementsByTagName("head")[0]; h.appendChild(s); 
+                window.kommunicate = m; m._globals = kommunicateSettings;
+            })(document, window.kommunicate || {});
+        </script>
+    </div>
+</body>
+</html>
