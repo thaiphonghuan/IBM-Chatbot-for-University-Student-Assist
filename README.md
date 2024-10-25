@@ -18,4 +18,4 @@ The chatbot is developed using IBM Watson, a powerful platform for natural langu
 ![My Photo](./static/delete.jpg)
 <br/><br/>
 <br/><br/>
-The results of the **Student list** will be updated every time a student is added or deleted.
+
